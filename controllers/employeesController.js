@@ -1,33 +1,30 @@
 const data = {
-employees: require('../model/employees.json'),
-setEmployees: function (data) {this.employees = dta;},
+    employees: require('../model/employees.json'),
+    setEmployees: function (data) {this.employees = data;},
 };
 
 const getAllEmployees = (req, res) => {
-    res.json(data.employees)
+    res.json(data.employees);
 }
 
 const createNewEmployee = (req, res) => {
     const newEmployee = {
-        id: data.employees?.length? data.employees[data.employees.length -1].id + 1 :1,
+        id: data.employees ?.length ? data.employees[data.employees.length -1].id + 1 :1,
             "firstname": req.body.firstname, 
             "lastname": req.body.lastname
     }
 
-    if(!newEmploy.firstname || newEmploy.lastname) {
-        return res.status(400).json({'message': 'firstname and lastname required'})
+    if(!newEmployee.firstname || !newEmployee.lastname) {
+        return res.status(400).json({'message': 'firstname and last names are required.'});
     }
 
-    data.setEmployees([...data.setEmployees, newEmployee])
+    data.setEmployees([...data.employees, newEmployee])
     res.status(201).json(data.employees)
 }
 
 
 const updateEmployee = (req, res) => {
-    res.json({
-        "firstname": req.body.firstname, 
-        "lastname": req.body.lastname
-    })
+    const employee = data.employees.find(emp => emp.id)
 }
 
 const deleteEmployee = (req, res) => {
