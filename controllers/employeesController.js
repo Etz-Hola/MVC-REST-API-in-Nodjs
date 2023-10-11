@@ -24,8 +24,11 @@ const createNewEmployee = (req, res) => {
 
 
 const updateEmployee = (req, res) => {
-    const employee = data.employees.find(emp => emp.id)
-}
+    const employee = data.employees.find(emp => emp.id === parseInt(res.body.id));
+
+    if(!employee) {
+        return res.status(400).json({message: `Emloyee ID ${req.body.id} not fund`})
+    }
 
 const deleteEmployee = (req, res) => {
     res.json({"id" : req.body.id})
