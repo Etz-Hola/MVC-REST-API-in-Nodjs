@@ -1,8 +1,6 @@
 const express = require('express');
-const { getAllEmployees } = require('../../controllers/employeesController');
 const router = express.Router();
-const data = {}
-data.employees = require('../../controllers/employeesController');
+employeesController = require('../../controllers/employeesController');
     
 router.route('/')
         .get(employeesController.getAllEmployees)
@@ -10,8 +8,8 @@ router.route('/')
         .put(employeesController.updateEmployee)
         .delete(employeesController.deleteEmployee)
 
-        router.route('/: id')
-        .get()
+        router.route('/:id')
+        .get(employeesController.getEmployee)
 
 
 module.exports = router;
